@@ -14,7 +14,6 @@ def main():
 
     updater = Updater(token=config.DEV_TOKEN)
     dp = updater.dispatcher
-    job = updater.job_queue
 
     dp.add_error_handler(error_callback)
     dp.add_handler(CommandHandler('start', core.start))

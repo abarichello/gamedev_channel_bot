@@ -13,5 +13,6 @@ WEBSITES = [
     'http://www.gamedesignersvault.com/feed/',
     'https://www.unrealengine.com/rss',
     'https://forum.unity.com/forums/9/index.rss',
-    'https://godotengine.org/rss.xml'
+    'https://godotengine.org/rss.xml',
+    'https://itch.io/blog.rss'
 ]
