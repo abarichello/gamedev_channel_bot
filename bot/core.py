@@ -11,7 +11,7 @@ def parse(bot):
     i = 0
     while i < len(config.WEBSITES):
         d = feedparser.parse(config.WEBSITES[i])
-        title = d.entries[0].title
+        title = clean_filename(d.entries[0].title)
         feed_title = clean_filename(d.feed.title)
         description = clean_html(str(d.entries[0].description))
         description = textwrap.shorten(description, width=256, placeholder='<i>[...]</i>')

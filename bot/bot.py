@@ -20,9 +20,10 @@ def main():
     dp.add_handler(CommandHandler('start', core.start))
     dp.add_handler(CommandHandler('help', core.get_help))
 
-    core.parse(updater.bot)
-    print(time.strftime('%a, %d %b %Y %H:%M:%S +0000', time.gmtime()))
-    time.sleep(3600) # Sleep for 1 hour
+    while True:
+        core.parse(updater.bot)
+        print(time.strftime('%a, %d %b %Y %H:%M:%S +0000', time.gmtime()))
+        time.sleep(3600) # Sleep for 1 hour
 
     updater.start_polling()
     updater.idle()
