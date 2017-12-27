@@ -22,10 +22,9 @@ def main():
     dp.add_handler(CommandHandler('parse', core.parse))
     dp.add_handler(CommandHandler('help', core.get_help))
 
-    core.parse(updater.bot)
+    while True:
+        core.parse(updater.bot)
 
-    #updater.start_webhook(listen='0.0.0.0', port=config.PORT, url_path=config.BOT_TOKEN)
-    #updater.bot.setWebhook("https://" + config.APPNAME + ".herokuapp.com/" + config.BOT_TOKEN)
     updater.start_polling()
     updater.idle()
 

@@ -7,5 +7,6 @@ MAINTANER = 192097117
 
 WEBSITES = [
     'https://www.gamedev.net/rss/4-gamedevnet-news.xml/',
-    'http://feeds.feedburner.com/GamasutraFeatureArticles/'
+    'http://feeds.feedburner.com/GamasutraFeatureArticles/',
+    'http://www.gamedesignersvault.com/feed/'
 ]
