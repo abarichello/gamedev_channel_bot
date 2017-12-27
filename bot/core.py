@@ -31,7 +31,7 @@ def parse(bot):
             with open('json/' + feed_title + '/' + title + '.txt', 'a+'):
                 pass  # Feed already exists
         except FileNotFoundError:  # Create a new file for the feed
-            bot.send_message(chat_id=config.MAINTAINER,  # bot.send_message(chat_id=config.NEWS_CHANNEL,
+            bot.send_message(chat_id=config.NEWS_CHANNEL,
                              text='<a href=\"' + url + '\">' + title + '</a>' + '\n' + description,
                              parse_mode=ParseMode.HTML)
 
