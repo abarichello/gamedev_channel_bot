@@ -1,19 +1,18 @@
-from telegram import ReplyKeyboardMarkup, KeyboardButton, ParseMode
-
-import re, time, textwrap, feedparser, json, time
+import re, textwrap, feedparser, json, os
+from telegram import ParseMode
 
 import strings
 import config
 
 def start(bot, update):
-    update.message.reply_text('Hi! I am the bot that fuels the @gamedev_channel!' +
-    'GitHub: https://github.com/aBARICHELLO/gamedev_channel_bot')
+    update.message.reply_text(strings.GREETING_TEXT)
 
 def parse(bot):
     i = 0
     while i < len(config.WEBSITES):
         d = feedparser.parse(config.WEBSITES[i])
         title = d.entries[0].title
+        feed_title = clean_filename(d.feed.title)
         description = clean_html(str(d.entries[0].description))
         description = textwrap.shorten(description, width=256, placeholder='<i>[...]</i>')
 
@@ -29,30 +28,26 @@ def parse(bot):
             published = d.feed.published
 
         try:
-            with open('json/' + clean_filename(title) + '.txt', 'r') as file:
-                old_published = json.load(file)
-                if old_published == published: # Repeated entry
-                    break
-        except FileNotFoundError:
-            print('-- NEW ARTICLE --\n' + title)
-            bot.send_message(chat_id=config.MAINTANER, # bot.send_message(chat_id=config.NEWS_CHANNEL,
-                text='<a href=\"'+ url +'\">'+ title +'</a>'+ '\n' +description,
-                parse_mode=ParseMode.HTML)
+            with open('json/' + feed_title + '/' + title + '.txt', 'a+'):
+                pass  # Feed already exists
+        except FileNotFoundError:  # Create a new file for the feed
+            bot.send_message(chat_id=config.MAINTAINER,  # bot.send_message(chat_id=config.NEWS_CHANNEL,
+                             text='<a href=\"' + url + '\">' + title + '</a>' + '\n' + description,
+                             parse_mode=ParseMode.HTML)
 
-        with open('json/' + clean_filename(title) + '.txt', 'w') as out: # Save article
-            json.dump(published, out)
+            os.makedirs('json/' + feed_title)  # Make a new folder for the website feed
+            with open('json/' + feed_title + '/' + title + '.txt', 'w') as out:  # Save article
+                dmp = {'title': title, 'published': published}
+                json.dump(dmp, out, indent=2)
         i += 1
 
-    print(time.strftime('%a, %d %b %Y %H:%M:%S +0000', time.gmtime()))
-    time.sleep(600) # Sleep for 10 mins
-
 def clean_html(description):
-    cln = re.compile('<[^>]*>')
+    cln = re.compile('<[^>]*>') # Remove HTML tags
     cleaned = re.sub(cln, '', description)
     return cleaned
 
 def clean_filename(filename):
-    return filename.strip(' ?;:\\n')
+    return filename.strip('  ?;:\\n')
 
 def get_help(bot, update): # Shows a helpful text
     update.message.reply_text(strings.HELP_STRING)
