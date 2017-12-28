@@ -43,7 +43,7 @@ def parse(bot):
 def clean_html(description):
     cln = re.compile('<[^>]*>') # Remove HTML tags
     cleaned = re.sub(cln, '', description)
-    return cleaned
+    return cleaned.replace('\"', '')
 
 def clean_filename(filename):
     return filename.strip('  ?;:\\n')
