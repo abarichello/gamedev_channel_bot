@@ -29,11 +29,14 @@ def parse(bot):
 
             try:
                 with open('json/' + feed_title + '/' + title + '.txt', 'a+'):
-                    pass  # Feed already exists
+                    print(feed_title + '\n' + title + '\n--')  # Feed already exists
             except FileNotFoundError:  # Create a new file for the feed
+                bot.send_message(chat_id=config.DEBUG_CHANNEL,
+                                 text='New feed: ' + feed_title + '\n' + title)
+
                 bot.send_message(chat_id=config.NEWS_CHANNEL,
-                                text='<a href=\"' + url + '\">' + title + '</a>' + '\n' + description,
-                                parse_mode=ParseMode.HTML)
+                                 text='<a href=\"' + url + '\">' +title+ '</a>' + '\n' +description,
+                                 parse_mode=ParseMode.HTML)
 
                 os.makedirs('json/' + feed_title)  # Make a new folder for the website feed
                 with open('json/' + feed_title + '/' + title + '.txt', 'w') as out:  # Save article
@@ -41,6 +44,7 @@ def parse(bot):
                     json.dump(dmp, out, indent=2)
 
 def clean_html(description):
+    description = description.replace('&hellip;', '')
     cln = re.compile('<[^>]*>') # Remove HTML tags
     cleaned = re.sub(cln, '', description)
     return cleaned.replace('\"', '')

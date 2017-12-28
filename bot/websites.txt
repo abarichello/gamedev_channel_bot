@@ -6,3 +6,4 @@ https://www.unrealengine.com/rss
 https://forum.unity.com/forums/9/index.rss
 https://godotengine.org/rss.xml
 https://itch.io/blog.rss
+http://www.eurogamer.net/?format=rss&type=article
