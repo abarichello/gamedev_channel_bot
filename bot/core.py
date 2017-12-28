@@ -1,4 +1,4 @@
-import re, textwrap, feedparser, json, os
+import feedparser, json, os
 from telegram import ParseMode
 
 import strings
@@ -13,19 +13,13 @@ def parse(bot):
             d = feedparser.parse(line)
             title = clean_filename(d.entries[0].title)
             feed_title = clean_filename(d.feed.title)
-            description = clean_html(str(d.entries[0].description))
-            description = textwrap.shorten(description, width=256, placeholder='<i>[...]</i>')
 
             try:
                 url = d.entries[0].url
             except (AttributeError, KeyError):
                 url = d.entries[0].link
 
-            published = ''
-            try:
-                published = d.entries[0].published
-            except (AttributeError, KeyError):
-                published = d.feed.published
+            published = d.entries[0].published
 
             try:
                 with open('json/' + feed_title + '/' + title + '.txt', 'a+'):
@@ -35,7 +29,7 @@ def parse(bot):
                                  text='New feed: ' + feed_title + '\n' + title)
 
                 bot.send_message(chat_id=config.NEWS_CHANNEL,
-                                 text='<a href=\"' + url + '\">' +title+ '</a>' + '\n' +description,
+                                 text='<a href=\"' + url + '\">' +title+ '</a>',
                                  parse_mode=ParseMode.HTML)
 
                 os.makedirs('json/' + feed_title)  # Make a new folder for the website feed
@@ -43,13 +37,7 @@ def parse(bot):
                     dmp = {'title': title, 'published': published}
                     json.dump(dmp, out, indent=2)
 
-def clean_html(description):
-    description = description.replace('&hellip;', '')
-    cln = re.compile('<[^>]*>') # Remove HTML tags
-    cleaned = re.sub(cln, '', description)
-    return cleaned.replace('\"', '')
-
-def clean_filename(filename):
+def clean_filename(filename):  # Removes prohibited symbols in filename
     return filename.strip('  ?;:\\n')
 
 def get_help(bot, update): # Shows a helpful text
