@@ -1,5 +1,5 @@
-import logging, time
-from telegram.ext import Updater, CommandHandler
+import logging
+from telegram.ext import Updater, CommandHandler, JobQueue
 
 import core
 import config
@@ -12,16 +12,17 @@ def main():
         logging.error(error)
 
     updater = Updater(token=config.DEV_TOKEN)
+    job = updater.job_queue
     dp = updater.dispatcher
 
     dp.add_error_handler(error_callback)
     dp.add_handler(CommandHandler('start', core.start))
     dp.add_handler(CommandHandler('help', core.get_help))
 
-    while True:
-        core.parse(updater.bot)
-        print(time.strftime('%a, %d %b %Y %H:%M:%S +0000', time.gmtime()))
-        time.sleep(3600) # Sleep for 1 hour
+    job.run_repeating(core.parse, interval=3600, first=0)
+
+    updater.start_polling()
+    updater.idle()
 
 if __name__ == '__main__':
     main()

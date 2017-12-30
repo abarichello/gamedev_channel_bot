@@ -1,4 +1,4 @@
-import feedparser, json, os
+import feedparser, json, os, time
 from telegram import ParseMode
 
 import strings
@@ -7,7 +7,7 @@ import config
 def start(bot, update):
     update.message.reply_text(strings.GREETING_TEXT)
 
-def parse(bot):
+def parse(bot, job):
     with open('websites.txt', 'r') as websites:
         for line in websites:
             d = feedparser.parse(line)
@@ -36,6 +36,7 @@ def parse(bot):
                 with open('json/' + feed_title + '/' + title + '.txt', 'w') as out:  # Save article
                     dmp = {'title': title, 'published': published}
                     json.dump(dmp, out, indent=2)
+    print(time.strftime('%a, %d %b %Y %H:%M:%S +0000', time.gmtime()))
 
 def clean_filename(filename):  # Removes prohibited symbols in filename
     return filename.strip('  ?;:\\n')
