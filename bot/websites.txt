@@ -8,3 +8,4 @@ https://godotengine.org/rss.xml
 https://itch.io/blog.rss
 http://www.eurogamer.net/?format=rss&type=article
 https://www.designer-notes.com/?feed=rss2
+https://nexus.leagueoflegends.com/en-us/feed/

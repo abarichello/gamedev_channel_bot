@@ -31,9 +31,13 @@ def parse(bot, job):
                 bot.send_message(chat_id=config.NEWS_CHANNEL,
                                  text='<a href=\"' + url + '\">' +title+ '</a>',
                                  parse_mode=ParseMode.HTML)
+            
+                try:
+                    os.makedirs('json/' + feed_title)  # Make a new folder for the website feed
+                except FileExistsError:
+                    pass
 
-                os.makedirs('json/' + feed_title)  # Make a new folder for the website feed
-                with open('json/' + feed_title + '/' + title + '.txt', 'w') as out:  # Save article
+            with open('json/' + feed_title + '/' + title + '.txt', 'w') as out:  # Save article
                     dmp = {'title': title, 'published': published}
                     json.dump(dmp, out, indent=2)
     print(time.strftime('%a, %d %b %Y %H:%M:%S +0000', time.gmtime()))
