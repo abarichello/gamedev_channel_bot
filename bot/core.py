@@ -40,7 +40,7 @@ def parse(bot, job):
     print(time.strftime('%a, %d %b %Y %H:%M:%S +0000', time.gmtime()))
 
 def clean_filename(filename):  # Removes prohibited symbols in filename
-    return filename.strip('  ?;:\\n')
+    return filename.strip('  ?;:')
 
 def get_help(bot, update): # Shows a helpful text
     update.message.reply_text(strings.HELP_STRING)

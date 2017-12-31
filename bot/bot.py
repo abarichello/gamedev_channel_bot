@@ -1,11 +1,11 @@
-import logging
+import logging, datetime
 from telegram.ext import Updater, CommandHandler, JobQueue
 
 import core
 import config
 
 def main():
-    logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.DEBUG)
+    logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.CRITICAL)
     logger = logging.getLogger(__name__)
 
     def error_callback(bot, update, error):
@@ -19,7 +19,10 @@ def main():
     dp.add_handler(CommandHandler('start', core.start))
     dp.add_handler(CommandHandler('help', core.get_help))
 
-    job.run_repeating(core.parse, interval=3600, first=0)
+    while True:
+        if datetime.datetime.now().minute is 0: # Wait for next hour
+            job.run_repeating(core.parse, interval=3600, first=0)
+            break
 
     updater.start_polling()
     updater.idle()
