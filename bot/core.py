@@ -18,8 +18,10 @@ def parse(bot, job):
                 url = d.entries[0].url
             except (AttributeError, KeyError):
                 url = d.entries[0].link
-
-            published = d.entries[0].published
+            try:
+                published = d.entries[0].published
+            except (AttributeError, KeyError):
+                published = d.entries[0].updated
 
             try:
                 with open('json/' + feed_title + '/' + title + '.txt', 'r'):
