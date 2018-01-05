@@ -15,9 +15,10 @@ def parse(bot, job):
             feed_title = clean_filename(d.feed.title)
 
             try:
-                url = d.entries[0].url
+                url = d.entries[0].link  
             except (AttributeError, KeyError):
-                url = d.entries[0].link
+                url = d.entries[0].url
+            
             try:
                 published = d.entries[0].published
             except (AttributeError, KeyError):
