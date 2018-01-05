@@ -10,3 +10,4 @@ http://www.eurogamer.net/?format=rss&type=article
 https://www.designer-notes.com/?feed=rss2
 https://nexus.leagueoflegends.com/en-us/feed/
 https://www.factorio.com/blog/rss
+https://www.youtube.com/feeds/videos.xml?channel_id=UC0JB7TSe49lg56u6qH8y_MQ
