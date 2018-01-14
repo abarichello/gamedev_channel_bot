@@ -12,3 +12,4 @@ https://nexus.leagueoflegends.com/en-us/feed/
 https://www.factorio.com/blog/rss
 https://www.youtube.com/feeds/videos.xml?channel_id=UC0JB7TSe49lg56u6qH8y_MQ
 https://medium.com/feed/tag/indiedev
+https://danieldoan.net/blog?format=RSS
