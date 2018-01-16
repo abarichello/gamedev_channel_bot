@@ -26,24 +26,31 @@ def parse(bot, job):
 
             try:
                 with open('json/' + feed_title + '/' + title + '.txt', 'r'):
-                    print(feed_title + '\n' + title + '\n--')  # Feed already exists
+                    # Feed already exists
+                    print(feed_title + '\n' + title + '\n--')
             except FileNotFoundError:  # Create a new file for the feed
                 bot.send_message(chat_id=config.NEWS_CHANNEL,
                                  text='<a href=\"' + url + '\">' +title+ '</a>',
                                  parse_mode=ParseMode.HTML)
             
                 try:
-                    os.makedirs('json/' + feed_title)  # Make a new folder for the website feed
+                    # Make a new folder for the website feed
+                    os.makedirs('json/' + feed_title)
                 except FileExistsError:
                     pass
 
-            with open('json/' + feed_title + '/' + title + '.txt', 'w') as out:  # Save article
+            # Save article
+            with open('json/' + feed_title + '/' + title + '.txt', 'w') as out:
                     dmp = {'title': title, 'published': published}
                     json.dump(dmp, out, indent=2)
+
     print(time.strftime('%a, %d %b %Y %H:%M:%S +0000', time.gmtime()))
 
-def clean_filename(filename):  # Removes prohibited symbols in filename
-    return filename.strip('  ?;:')
+def clean_filename(filename):  # Removes UNIX prohibited symbols in filename
+    prohibited = "\\/"
+    for c in prohibited:
+        filename = filename.replace(c, '')
+    return filename
 
 def get_help(bot, update): # Shows a helpful text
     update.message.reply_text(strings.HELP_STRING)
