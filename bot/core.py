@@ -11,17 +11,20 @@ def parse(bot, job):
     with open('websites.txt', 'r') as websites:
         for line in websites:
             d = feedparser.parse(line)
+            if d.bozo == 1:
+                continue
+
             title = clean_filename(d.entries[0].title)
             feed_title = clean_filename(d.feed.title)
 
-            try:
-                url = d.entries[0].link  
-            except (AttributeError, KeyError):
+            if 'link' in d.feed:
+                url = d.entries[0].link
+            else:
                 url = d.entries[0].url
-            
-            try:
+
+            if 'published' in d.feed:
                 published = d.entries[0].published
-            except (AttributeError, KeyError):
+            else:
                 published = d.entries[0].updated
 
             try:
@@ -29,15 +32,17 @@ def parse(bot, job):
                     # Feed already exists
                     print(feed_title + '\n' + title + '\n--')
             except FileNotFoundError:  # Create a new file for the feed
-                bot.send_message(chat_id=config.NEWS_CHANNEL,
+                bot.send_message(chat_id=config.NEWS_CHANNEL,  # Send to channel
                                  text='<a href=\"' + url + '\">' +title+ '</a>',
                                  parse_mode=ParseMode.HTML)
-            
-                try:
-                    # Make a new folder for the website feed
-                    os.makedirs('json/' + feed_title)
-                except FileExistsError:
-                    pass
+
+            try:
+                # Make a new folder for the website feed
+                os.makedirs('json/' + feed_title)
+                bot.send_message(chat_id=config.MAINTAINER,  # Send to maintainer
+                                 text='New feed found: ' + feed_title)
+            except FileExistsError:
+                pass
 
             # Save article
             with open('json/' + feed_title + '/' + title + '.txt', 'w') as out:
