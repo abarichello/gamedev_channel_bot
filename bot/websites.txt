@@ -16,3 +16,6 @@ https://danieldoan.net/blog?format=RSS
 https://engineering.riotgames.com/news/feed
 https://gameanalytics.com/feed
 https://www.youtube.com/feeds/videos.xml?channel_id=UC0fDG3byEcMtbOqPMymDNbw
+http://www.gamesauce.biz/feed/
+http://feeds.feedburner.com/GamesBrief
+http://feeds.feedburner.com/LostGarden
