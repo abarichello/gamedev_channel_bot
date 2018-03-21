@@ -1,6 +1,7 @@
 import logging, datetime
 from telegram.ext import Updater, CommandHandler, JobQueue
 
+import time
 import core
 import config
 
@@ -23,6 +24,8 @@ def main():
         if datetime.datetime.now().minute is 0: # Wait for next hour
             job.run_repeating(core.parse, interval=3600, first=0)
             break
+        else:
+            time.sleep(10)
 
     updater.start_polling()
     updater.idle()
