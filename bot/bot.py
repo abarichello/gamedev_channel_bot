@@ -21,7 +21,7 @@ def main():
     dp.add_handler(CommandHandler('help', core.get_help))
 
     while True:
-        if datetime.datetime.now().minute is 0: # Wait for next hour
+        if datetime.datetime.now().minute is 0:  # Wait for next hour
             job.run_repeating(core.parse, interval=3600, first=0)
             break
         else:
