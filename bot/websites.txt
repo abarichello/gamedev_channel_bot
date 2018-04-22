@@ -19,3 +19,4 @@ http://www.gamesauce.biz/feed/
 http://feeds.feedburner.com/GamesBrief
 http://feeds.feedburner.com/LostGarden
 http://gamefromscratch.com/syndication.axd
+https://rocketsnail.com/blog?format=RSS
