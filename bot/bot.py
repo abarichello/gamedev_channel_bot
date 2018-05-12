@@ -1,13 +1,18 @@
-import logging, datetime
-from telegram.ext import Updater, CommandHandler, JobQueue
+import logging
+import datetime
+from telegram.ext import Updater, CommandHandler
 
 import time
 import core
 import config
 
+
 def main():
-    logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.CRITICAL)
-    logger = logging.getLogger(__name__)
+    logging.basicConfig(
+        format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+        level=logging.CRITICAL)
+    logger = logging.getLogger()
+    logger.setLevel(logging.INFO)
 
     def error_callback(bot, update, error):
         logging.error(error)
@@ -29,6 +34,7 @@ def main():
 
     updater.start_polling()
     updater.idle()
+
 
 if __name__ == '__main__':
     main()
