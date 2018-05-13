@@ -1,3 +1,4 @@
 python_telegram_bot==8.0
+dataset==1.0.6
 feedparser==5.2.1
 telegram==0.0.1

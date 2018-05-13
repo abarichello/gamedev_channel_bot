@@ -1,11 +1,13 @@
 import feedparser
-import json
+import dataset
 import datetime
-from os import environ, makedirs as os
+import logging
 from telegram import ParseMode
 
 import strings
 import config
+
+db = dataset.connect(config.PG_LINK, row_type=dict)
 
 
 def start(bot, update):
@@ -16,54 +18,45 @@ def parse(bot, job):
     start_time = datetime.datetime.now()
     with open('websites.txt', 'r') as websites:
         for line in websites:
-            d = feedparser.parse(line)
-            if d.bozo == 1:
+            page = feedparser.parse(line)
+            if page.bozo == 1:
+                report_to_maintainer(bot, f'Malformed RSS: {line}')
                 continue
 
-            title = clean_filename(d.entries[0].title)
-            feed_title = clean_filename(d.feed.title)
+            feed_title = page.feed.title
+            title = page.entries[0].title
 
-            if 'link' in d.feed:
-                url = d.entries[0].link
+            if 'link' in page.feed:
+                url = page.entries[0].link
             else:
-                url = d.entries[0].url
+                url = page.entries[0].url
 
-            if 'published' in d.feed:
-                published = d.entries[0].published
+            if 'published' in page.feed:
+                published = page.entries[0].published
             else:
-                published = d.entries[0].updated
+                published = page.entries[0].updated
 
-            try:  # Check if entry already exists
-                with open(f'json/{feed_title}/{title}.txt', 'r'):
-                    print(f' ==> {feed_title}' + '\n' + f'-- {title} ✔' + '\n')
-            except FileNotFoundError:  # Create a new file for the feed
+            table = db[feed_title]
+            if not table.find_one(title=title):
+                table.insert(dict(title=title, date=published, url=url,
+                                  added=datetime.datetime.now().isoformat()))
+
+                report_to_maintainer(bot, f'New feed: {feed_title}')
                 bot.send_message(chat_id=config.NEWS_CHANNEL,
                                  text=f'<a href="{url}"> {title}</a>',
                                  parse_mode=ParseMode.HTML)
-
-            try:  # Check if feed folder exists already
-                os.makedirs('json/' + feed_title)
-                bot.send_message(chat_id=config.MAINTAINER,
-                                 text='New feed found: ' + feed_title)
-            except FileExistsError:
-                pass
-
-            # Save article
-            with open(f'json/{feed_title}/{title}.txt', 'w') as out:
-                    dmp = {'title': title, 'published': published}
-                    json.dump(dmp, out, indent=2)
+            else:
+                print(f' ==> {feed_title}\n - {title} ✔\n')
 
     end_time = datetime.datetime.now()
-    total_time = end_time - start_time
-    print(f'Finished at: {end_time} and took {total_time}')
-    bot.send_message(chat_id=config.MAINTAINER, text=f'took {total_time}')
+    total_time_str = f'Total time: {end_time - start_time}'
+    logging.info(total_time_str)
+    bot.send_message(chat_id=config.GDC_MAINTAINER,
+                     text=total_time_str)
 
 
-def clean_filename(filename):  # Removes UNIX prohibited symbols in filename
-    prohibited = "\\/"
-    for c in prohibited:
-        filename = filename.replace(c, '')
-    return filename
+def report_to_maintainer(bot, message):
+    bot.send_message(chat_id=config.GDC_MAINTAINER, text=message)
 
 
 def get_help(bot, update):  # Shows a helpful text
