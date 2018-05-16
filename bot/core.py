@@ -41,7 +41,6 @@ def parse(bot, job):
                 table.insert(dict(title=title, date=published, url=url,
                                   added=datetime.datetime.now().isoformat()))
 
-                report_to_maintainer(bot, f'New feed: {feed_title}')
                 bot.send_message(chat_id=config.NEWS_CHANNEL,
                                  text=f'<a href="{url}"> {title}</a>',
                                  parse_mode=ParseMode.HTML)
