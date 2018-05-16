@@ -17,7 +17,7 @@ def main():
     def error_callback(bot, update, error):
         logging.error(error)
 
-    updater = Updater(token=config.DEV_TOKEN)
+    updater = Updater(token=config.GDC_TOKEN)
     job = updater.job_queue
     dp = updater.dispatcher
 

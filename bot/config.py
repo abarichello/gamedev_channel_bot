@@ -1,6 +1,6 @@
 from os import environ
 
-DEV_TOKEN = environ['DEV_TOKEN']
+GDC_TOKEN = environ['GDC_TOKEN']
 PG_LINK = environ['PG_LINK']
 NEWS_CHANNEL = environ['NEWS_CHANNEL']
 DEBUG_CHANNEL = environ['DEBUG_CHANNEL']
