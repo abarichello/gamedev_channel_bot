@@ -30,7 +30,7 @@ def main():
             job.run_repeating(core.parse, interval=3600, first=0)
             break
         else:
-            time.sleep(10)
+            time.sleep(1)
 
     updater.start_polling()
     updater.idle()
