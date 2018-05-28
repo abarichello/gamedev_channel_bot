@@ -2,7 +2,7 @@ import feedparser
 import dataset
 import datetime
 import logging
-from telegram import ParseMode
+from telegram import ParseMode, InlineKeyboardButton, InlineKeyboardMarkup
 
 import strings
 import config
@@ -41,9 +41,8 @@ def parse(bot, job):
                 table.insert(dict(title=title, date=published, url=url,
                                   added=datetime.datetime.now().isoformat()))
 
-                bot.send_message(chat_id=config.NEWS_CHANNEL,
-                                 text=f'<a href="{url}"> {title}</a>',
-                                 parse_mode=ParseMode.HTML)
+                info = {'url': url, 'title': title}
+                send_to_channel(bot, info)
             else:
                 print(f' ==> {feed_title}\n - {title} ✔\n')
 
@@ -54,9 +53,21 @@ def parse(bot, job):
                      text=total_time_str)
 
 
+def send_to_channel(bot, info):
+    keyboard = [
+        [InlineKeyboardButton("Read it", url=info.url)]]
+    reply_markup = InlineKeyboardMarkup(keyboard)
+
+    bot.send_message(
+        chat_id=config.NEWS_CHANNEL,
+        text=f'<a href="{info.url}"> {info.title}</a>',
+        parse_mode=ParseMode.HTML,
+        reply_markup=reply_markup)
+
+
 def report_to_maintainer(bot, message):
     bot.send_message(chat_id=config.GDC_MAINTAINER, text=message)
 
 
-def get_help(bot, update):  # Shows a helpful text
+def get_help(bot, update):
     update.message.reply_text(strings.HELP_STRING)
