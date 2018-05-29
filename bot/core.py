@@ -38,11 +38,11 @@ def parse(bot, job):
 
             table = db[feed_title]
             if not table.find_one(title=title):
-                table.insert(dict(title=title, date=published, url=url,
-                                  added=datetime.datetime.now().isoformat()))
-
                 info = {'url': url, 'title': title}
                 send_to_channel(bot, info)
+
+                table.insert(dict(title=title, date=published, url=url,
+                                  added=datetime.datetime.now().isoformat()))
             else:
                 print(f' ==> {feed_title}\n - {title} ✔\n')
 
@@ -55,12 +55,12 @@ def parse(bot, job):
 
 def send_to_channel(bot, info):
     keyboard = [
-        [InlineKeyboardButton("Read it", url=info.url)]]
+        [InlineKeyboardButton("Read it", url=info["url"])]]
     reply_markup = InlineKeyboardMarkup(keyboard)
 
     bot.send_message(
         chat_id=config.NEWS_CHANNEL,
-        text=f'<a href="{info.url}"> {info.title}</a>',
+        text=f'<a href="{info["url"]}"> {info["title"]}</a>',
         parse_mode=ParseMode.HTML,
         reply_markup=reply_markup)
 
