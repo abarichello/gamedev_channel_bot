@@ -18,3 +18,5 @@ https://www.youtube.com/feeds/videos.xml?channel_id=UCSuhUzpdXg9jme6eN6HA_IA
 http://feeds.feedburner.com/LostGarden
 https://rocketsnail.com/blog?format=RSS
 http://feeds.feedburner.com/GamesBrief
+https://www.youtube.com/feeds/videos.xml?channel_id=UCqfqH-wq12WOm4QG4KiRisw
+http://dsasmblr.com/feed/
