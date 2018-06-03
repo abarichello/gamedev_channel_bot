@@ -38,7 +38,7 @@ def parse(bot, job):
 
             table = db[feed_title]
             if not table.find_one(title=title):
-                info = {'url': url, 'title': title}
+                info = {'url': url, 'feed_title': feed_title, 'title': title}
                 send_to_channel(bot, info)
 
                 table.insert(dict(title=title, date=published, url=url,
@@ -55,7 +55,7 @@ def parse(bot, job):
 
 def send_to_channel(bot, info):
     keyboard = [
-        [InlineKeyboardButton("Read it", url=info["url"])]]
+        [InlineKeyboardButton(info['feed_title'], url=info['url'])]]
     reply_markup = InlineKeyboardMarkup(keyboard)
 
     bot.send_message(
