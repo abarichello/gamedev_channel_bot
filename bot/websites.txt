@@ -5,6 +5,7 @@ https://www.gamedev.net/rss/4-gamedevnet-news.xml/
 https://www.unrealengine.com/rss
 http://feeds.feedburner.com/GamasutraFeatureArticles/
 http://www.gamesauce.biz/feed/
+https://www.youtube.com/feeds/videos.xml?channel_id=UCP7QY6L5pvmm0-stL-pNFrw
 https://itch.io/blog.rss
 https://forum.unity.com/forums/9/index.rss
 https://godotengine.org/rss.xml
