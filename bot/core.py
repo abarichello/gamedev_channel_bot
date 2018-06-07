@@ -54,8 +54,11 @@ def parse(bot, job):
 
 
 def send_to_channel(bot, info):
+    feed_title = info['feed_title']
+    if len(feed_title) > 30:
+        feed_title = feed_title[0:30] + '...'
     keyboard = [
-        [InlineKeyboardButton(info['feed_title'], url=info['url'])]]
+        [InlineKeyboardButton(feed_title, url=info['url'])]]
     reply_markup = InlineKeyboardMarkup(keyboard)
 
     bot.send_message(
