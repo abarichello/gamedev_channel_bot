@@ -20,4 +20,5 @@ http://feeds.feedburner.com/LostGarden
 https://rocketsnail.com/blog?format=RSS
 http://feeds.feedburner.com/GamesBrief
 https://www.youtube.com/feeds/videos.xml?channel_id=UCqfqH-wq12WOm4QG4KiRisw
+http://www.crytek.com/blog/rss/
 http://dsasmblr.com/feed/
