@@ -5,6 +5,9 @@ GameDev channel on Telegram, updated hourly with the best gamedev websites conte
 # Channel
 [CLICK HERE](http://t.me/gamedev_channel) to join the channel on telegram. The bot checks the websites for new posts every hour.
 
+# Bot
+This bot can be repurposed to parse any type of RSS feeds you want, just modify the `websites.txt` file and environment variables in `config.py`.
+
 # Contributing
-To include new RSS feeds to the channel open a pull request and edit the `bot/websites.txt` file located in the repository.  
+To include new RSS feeds to the channel open a pull request and edit the `bot/websites.txt` file located in the repository.
 At the Pull Request description include examples of great material that the site has produced and why it is a great gamedev resource.
