@@ -54,7 +54,7 @@ def parse(bot, job):
                      text=total_time_str)
 
 
-def send_from_buffer(bot):
+def send_from_buffer(bot, job):
     for element in buffer:
         send_to_channel(bot, element)
     buffer.clear()
