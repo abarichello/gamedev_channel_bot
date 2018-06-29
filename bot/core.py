@@ -7,8 +7,9 @@ from telegram import ParseMode, InlineKeyboardButton, InlineKeyboardMarkup
 import strings
 import config
 
-db = dataset.connect(config.PG_LINK, row_type=dict)
 
+db = dataset.connect(config.PG_LINK, row_type=dict)
+buffer = []
 
 def start(bot, update):
     update.message.reply_text(strings.GREETING_TEXT)
@@ -20,7 +21,7 @@ def parse(bot, job):
         for line in websites:
             page = feedparser.parse(line)
             if page.bozo == 1:
-                report_to_maintainer(bot, f'Malformed RSS: {line}')
+                report_to_maintainer(bot, f'RSS Error: {line}\n {page.bozo_exception}')
                 continue
 
             feed_title = page.feed.title
@@ -39,7 +40,7 @@ def parse(bot, job):
             table = db[feed_title]
             if not table.find_one(title=title):
                 info = {'url': url, 'feed_title': feed_title, 'title': title}
-                send_to_channel(bot, info)
+                buffer.append(info)
 
                 table.insert(dict(title=title, date=published, url=url,
                                   added=datetime.datetime.now().isoformat()))
@@ -51,6 +52,12 @@ def parse(bot, job):
     logging.info(total_time_str)
     bot.send_message(chat_id=config.GDC_MAINTAINER,
                      text=total_time_str)
+
+
+def send_from_buffer(bot):
+    for element in buffer:
+        send_to_channel(bot, element)
+    buffer.clear()
 
 
 def send_to_channel(bot, info):

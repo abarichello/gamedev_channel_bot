@@ -27,7 +27,8 @@ def main():
 
     while True:
         if datetime.datetime.now().minute is 0:
-            job.run_repeating(core.parse, interval=3600, first=0)
+            job.run_repeating(core.parse, interval=3420, first=0)
+            job.run_repeating(core.send_from_buffer, interval=3600, first=0)
             break
         else:
             time.sleep(1)
