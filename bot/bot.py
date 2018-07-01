@@ -8,9 +8,7 @@ import config
 
 
 def main():
-    logging.basicConfig(
-        format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-        level=logging.CRITICAL)
+    logging.basicConfig(format='%(asctime)s - %(levelname)s | %(message)s', level=logging.ERROR)
     logger = logging.getLogger()
     logger.setLevel(logging.INFO)
 
@@ -27,8 +25,7 @@ def main():
 
     while True:
         if datetime.datetime.now().minute is 0:
-            job.run_repeating(core.parse, interval=3420, first=0)
-            job.run_repeating(core.send_from_buffer, interval=3600, first=180)
+            job.run_repeating(core.parse, interval=3600, first=0)
             break
         else:
             time.sleep(1)
