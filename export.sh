@@ -1,10 +1,10 @@
 #!/bin/sh # RUN WITH source ./export.sh
 
-export NEWS_CHANNEL=-1001223585277
-export DEBUG_CHANNEL=-1001128306684
-export GDC_MAINTAINER=192097117
-export PG_LINK=postgresql://postgres:postgres@localhost:5432/gamedev_channel
-echo
-echo Exported config variables except for GDC_TOKEN.
-echo
+export NEWS_CHANNEL=    # ID of the Telegram channel where the messages will get sent.
+export DEBUG_CHANNEL=   # Channel/Group ID for DEBUG.
+export GDC_MAINTAINER=  # ID of the maintainer to get notified about critical errors.
+export PG_LINK=         # DB Link to be used.
+export GDC_TOKEN=       # Telegram token.
+export GDC_BUFFER=      # Time between start of websites.txt parsing and message sending.
+echo Exported config variables.
 
