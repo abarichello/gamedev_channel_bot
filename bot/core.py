@@ -49,8 +49,8 @@ def parse(bot, job):
 
                 table.insert(dict(title=title, date=published, url=url,
                                   added=datetime.now().isoformat()))
-            else:
-                print(f' ==> {feed_title}\n - {title} ✔\n')
+                logging.info(f'Buffered {title}')
+            logging.info(f'Finished {feed_title}')
 
     # Report time taken to construct buffer
     end_time = datetime.now()
