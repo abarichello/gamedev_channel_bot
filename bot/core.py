@@ -52,15 +52,17 @@ def parse(bot, job):
             else:
                 print(f' ==> {feed_title}\n - {title} ✔\n')
 
+    # Report time taken to construct buffer
     end_time = datetime.now()
     total_time = (end_time - start_time).total_seconds()
     total_time_str = f'Parsing took {total_time} seconds, buffer has {len(buffer)} elements.'
     logging.info(total_time_str)
     bot.send_message(chat_id=config.GDC_MAINTAINER, text=total_time_str)
 
+    # Schedule next job according to env GDC_BUFFER
     next_job = config.GDC_BUFFER - total_time
-    logging.info(f'Next job to be scheduled in {next_job} seconds')
-    job.job_queue.run_once(send_messages, when=next_job, name='send_to_channel_job')
+    logging.info(f'Next job scheduled to run in {next_job} seconds')
+    job.job_queue.run_once(send_messages, when=next_job, name='message_job')
 
 
 def send_messages(bot, job):
@@ -72,7 +74,7 @@ def send_messages(bot, job):
 
 def send_to_channel(bot, info):
     feed_title = info['feed_title']
-    if len(feed_title) > 30:
+    if len(feed_title) > 30:  # Strip long feed titles
         feed_title = feed_title[0:30] + '...'
     keyboard = [
         [InlineKeyboardButton(feed_title, url=info['url'])]]
