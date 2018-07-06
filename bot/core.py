@@ -24,7 +24,6 @@ def parse(bot, job):
             page = feedparser.parse(line)
 
             if line.startswith('#'):
-                logging.info(f'Skipped: {line}')
                 continue
 
             if page.bozo == 1:
