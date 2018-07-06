@@ -27,6 +27,7 @@ https://danieldoan.net/blog?format=RSS
 # Reverse Engineering / Game Hacking
 http://dsasmblr.com/feed/
 https://www.youtube.com/feeds/videos.xml?channel_id=UCqfqH-wq12WOm4QG4KiRisw
+https://www.youtube.com/feeds/videos.xml?channel_id=UCxuUEVD4bQqT3twlaeW9usQ
 # Game Design
 http://feeds.feedburner.com/LostGarden
 https://itch.io/blog.rss
