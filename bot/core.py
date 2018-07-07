@@ -46,8 +46,8 @@ def parse(bot, job):
                 info = {'url': url, 'feed_title': feed_title, 'post_title': post_title}
                 buffer.append(info)
 
-                table.insert(dict(feed_title=feed_title, post_title=post_title, url=url,
-                                  date=published, added=datetime.now().isoformat()))
+                table.insert(dict(feed_title=feed_title, post_title=post_title,
+                                  url=url, published=published))
                 logging.info(f'Buffered {post_title}')
             logging.info(f'-- Finished {feed_title}')
 
