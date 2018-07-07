@@ -1,4 +1,4 @@
-CREATE TABLE feeds (
+CREATE TABLE IF NOT EXISTS feeds (
     id              SERIAL      PRIMARY KEY,
     feed_title      TEXT        NOT NULL,
     post_title      TEXT        NOT NULL,

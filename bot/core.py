@@ -16,7 +16,7 @@ def start(bot, update):
 
 
 def parse(bot, job):
-    logging.info("Starting buffer")
+    logging.info("-- Starting buffer")
     start_time = datetime.now()
 
     with open('websites.txt', 'r') as websites:
@@ -27,13 +27,13 @@ def parse(bot, job):
                 continue
 
             if page.bozo == 1:
-                message = f'RSS Error: {line}\n {page.bozo_exception}'
+                message = f'-- RSS Error: {line}\n {page.bozo_exception}'
                 logging.error(message)
                 report_to_maintainer(bot, message)
                 continue
 
             feed_title = page.feed.title
-            title = page.entries[0].title
+            post_title = page.entries[0].title
             url = page.entries[0].link
 
             if 'published' in page.feed:
@@ -41,15 +41,15 @@ def parse(bot, job):
             else:
                 published = page.entries[0].updated
 
-            table = db[feed_title]
-            if not table.find_one(title=title):
-                info = {'url': url, 'feed_title': feed_title, 'title': title}
+            table = db['feeds']
+            if not table.find_one(feed_title=feed_title, post_title=post_title):
+                info = {'url': url, 'feed_title': feed_title, 'post_title': post_title}
                 buffer.append(info)
 
-                table.insert(dict(title=title, date=published, url=url,
-                                  added=datetime.now().isoformat()))
-                logging.info(f'Buffered {title}')
-            logging.info(f'Finished {feed_title}')
+                table.insert(dict(feed_title=feed_title, post_title=post_title, url=url,
+                                  date=published, added=datetime.now().isoformat()))
+                logging.info(f'Buffered {post_title}')
+            logging.info(f'-- Finished {feed_title}')
 
     # Report time taken to construct buffer
     end_time = datetime.now()
@@ -60,12 +60,12 @@ def parse(bot, job):
 
     # Schedule next job according to env GDC_BUFFER
     next_job = config.GDC_BUFFER - total_time
-    logging.info(f'Next job scheduled to run in {next_job} seconds')
+    logging.info(f'-- Next job scheduled to run in {next_job} seconds')
     job.job_queue.run_once(send_messages, when=next_job, name='message_job')
 
 
 def send_messages(bot, job):
-    logging.info('Sending messages from buffer')
+    logging.info('-- Sending messages from buffer')
     for element in buffer:
         send_to_channel(bot, element)
     buffer.clear()
@@ -81,7 +81,7 @@ def send_to_channel(bot, info):
 
     bot.send_message(
         chat_id=config.NEWS_CHANNEL,
-        text=f'<a href="{info["url"]}"> {info["title"]}</a>',
+        text=f'<a href="{info["url"]}"> {info["post_title"]}</a>',
         parse_mode=ParseMode.HTML,
         reply_markup=reply_markup)
 
