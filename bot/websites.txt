@@ -5,6 +5,12 @@ https://www.gamedev.net/rss/4-gamedevnet-news.xml/
 http://www.gamesauce.biz/feed/
 https://www.designer-notes.com/?feed=rss2
 http://feeds.feedburner.com/GamesBrief
+# Reverse Engineering / Game Hacking / Game Network
+http://dsasmblr.com/feed/
+https://www.youtube.com/feeds/videos.xml?channel_id=UCqfqH-wq12WOm4QG4KiRisw
+https://www.youtube.com/feeds/videos.xml?channel_id=UCxuUEVD4bQqT3twlaeW9usQ
+https://www.youtube.com/feeds/videos.xml?channel_id=UCP7QY6L5pvmm0-stL-pNFrw
+https://needlumber.wordpress.com/feed/
 # Tech Talks
 https://www.youtube.com/feeds/videos.xml?channel_id=UC0JB7TSe49lg56u6qH8y_MQ
 http://gamefromscratch.com/syndication.axd
@@ -13,8 +19,6 @@ https://www.unrealengine.com/rss
 https://forum.unity.com/forums/9/index.rss
 https://godotengine.org/rss.xml
 http://www.crytek.com/blog/rss/
-# Networking
-https://www.youtube.com/feeds/videos.xml?channel_id=UCP7QY6L5pvmm0-stL-pNFrw
 # Documentaries
 https://www.youtube.com/feeds/videos.xml?channel_id=UC0fDG3byEcMtbOqPMymDNbw
 https://www.youtube.com/feeds/videos.xml?channel_id=UCSuhUzpdXg9jme6eN6HA_IA
@@ -24,10 +28,6 @@ https://www.factorio.com/blog/rss
 https://engineering.riotgames.com/news/feed
 https://rocketsnail.com/blog?format=RSS
 https://danieldoan.net/blog?format=RSS
-# Reverse Engineering / Game Hacking
-http://dsasmblr.com/feed/
-https://www.youtube.com/feeds/videos.xml?channel_id=UCqfqH-wq12WOm4QG4KiRisw
-https://www.youtube.com/feeds/videos.xml?channel_id=UCxuUEVD4bQqT3twlaeW9usQ
 # Game Design
 http://feeds.feedburner.com/LostGarden
 https://itch.io/blog.rss
