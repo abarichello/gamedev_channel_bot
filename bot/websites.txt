@@ -11,6 +11,7 @@ https://www.youtube.com/feeds/videos.xml?channel_id=UCqfqH-wq12WOm4QG4KiRisw
 https://www.youtube.com/feeds/videos.xml?channel_id=UCxuUEVD4bQqT3twlaeW9usQ
 https://www.youtube.com/feeds/videos.xml?channel_id=UCP7QY6L5pvmm0-stL-pNFrw
 https://needlumber.wordpress.com/feed/
+https://nickcano.com/rss/
 # Tech Talks
 https://www.youtube.com/feeds/videos.xml?channel_id=UC0JB7TSe49lg56u6qH8y_MQ
 http://gamefromscratch.com/syndication.axd
