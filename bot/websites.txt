@@ -15,11 +15,12 @@ https://nickcano.com/rss/
 # Tech Talks
 https://www.youtube.com/feeds/videos.xml?channel_id=UC0JB7TSe49lg56u6qH8y_MQ
 http://gamefromscratch.com/syndication.axd
-# Game Engine Blogs
+# Game Engine Blogs / Engine Tech
 https://www.unrealengine.com/rss
 https://forum.unity.com/forums/9/index.rss
 https://godotengine.org/rss.xml
 http://www.crytek.com/blog/rss/
+http://the-witness.net/news/category/engine-tech/feed/
 # Documentaries
 https://www.youtube.com/feeds/videos.xml?channel_id=UC0fDG3byEcMtbOqPMymDNbw
 https://www.youtube.com/feeds/videos.xml?channel_id=UCSuhUzpdXg9jme6eN6HA_IA
