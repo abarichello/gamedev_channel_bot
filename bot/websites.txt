@@ -18,10 +18,9 @@ https://www.youtube.com/feeds/videos.xml?channel_id=UCRuevX5KUt960aHuWqxj-bQ
 https://www.youtube.com/feeds/videos.xml?channel_id=UC0JB7TSe49lg56u6qH8y_MQ
 http://gamefromscratch.com/syndication.axd
 # Game Engine Blogs / Engine Tech / Graphics
-https://www.unrealengine.com/rss
+https://www.unrealengine.com/en-US/rss
 https://forum.unity.com/forums/9/index.rss
 https://godotengine.org/rss.xml
-http://www.crytek.com/blog/rss/
 http://the-witness.net/news/category/engine-tech/feed/
 http://www.adriancourreges.com/atom.xml
 # Documentaries
@@ -34,5 +33,5 @@ https://engineering.riotgames.com/news/feed
 https://rocketsnail.com/blog?format=RSS
 https://danieldoan.net/blog?format=RSS
 # Game Design
-http://feeds.feedburner.com/LostGarden
+http://www.lostgarden.com/feeds/posts/default?alt=rss
 https://itch.io/blog.rss
