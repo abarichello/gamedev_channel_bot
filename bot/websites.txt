@@ -7,17 +7,16 @@ https://www.designer-notes.com/?feed=rss2
 http://feeds.feedburner.com/GamesBrief
 # Reverse Engineering / Game Hacking / Game Network
 http://dsasmblr.com/feed/
+https://gamephreakers.com/feed/
 https://www.youtube.com/feeds/videos.xml?channel_id=UCqfqH-wq12WOm4QG4KiRisw
 https://www.youtube.com/feeds/videos.xml?channel_id=UCxuUEVD4bQqT3twlaeW9usQ
 https://www.youtube.com/feeds/videos.xml?channel_id=UCP7QY6L5pvmm0-stL-pNFrw
 https://www.youtube.com/feeds/videos.xml?channel_id=UCfVFSjHQ57zyxajhhRc7i0g
-https://needlumber.wordpress.com/feed/
 https://nickcano.com/rss/
 https://www.youtube.com/feeds/videos.xml?channel_id=UCRuevX5KUt960aHuWqxj-bQ
 https://www.youtube.com/feeds/videos.xml?channel_id=UCYDnJiF0_RqSjkjvjRbG1tA
 # Tech Talks
 https://www.youtube.com/feeds/videos.xml?channel_id=UC0JB7TSe49lg56u6qH8y_MQ
-http://gamefromscratch.com/syndication.axd
 # Game Engine Blogs / Engine Tech / Graphics
 https://www.unrealengine.com/en-US/rss
 https://forum.unity.com/forums/9/index.rss
@@ -32,7 +31,7 @@ https://nexus.leagueoflegends.com/en-us/feed/
 https://www.factorio.com/blog/rss
 https://engineering.riotgames.com/news/feed
 https://rocketsnail.com/blog?format=RSS
-https://danieldoan.net/blog?format=RSS
+http://www.positech.co.uk/cliffsblog/feed/
 # Game Design
 http://www.lostgarden.com/feeds/posts/default?alt=rss
 https://itch.io/blog.rss
