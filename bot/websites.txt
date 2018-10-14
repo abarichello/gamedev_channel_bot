@@ -15,6 +15,7 @@ https://www.youtube.com/feeds/videos.xml?channel_id=UCfVFSjHQ57zyxajhhRc7i0g
 https://nickcano.com/rss/
 https://www.youtube.com/feeds/videos.xml?channel_id=UCRuevX5KUt960aHuWqxj-bQ
 https://www.youtube.com/feeds/videos.xml?channel_id=UCYDnJiF0_RqSjkjvjRbG1tA
+https://www.youtube.com/feeds/videos.xml?channel_id=UCHTnEwQKNwm49CQeCVZogMw
 # Tech Talks
 https://www.youtube.com/feeds/videos.xml?channel_id=UC0JB7TSe49lg56u6qH8y_MQ
 # Game Engine Blogs / Engine Tech / Graphics
@@ -35,3 +36,4 @@ http://www.positech.co.uk/cliffsblog/feed/
 # Game Design
 http://www.lostgarden.com/feeds/posts/default?alt=rss
 https://itch.io/blog.rss
+https://www.youtube.com/feeds/videos.xml?channel_id=UCqJ-Xo29CKyLTjn6z2XwYAw
