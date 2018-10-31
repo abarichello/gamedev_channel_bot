@@ -9,7 +9,9 @@ import config
 
 
 buffer = []
+MAX_UPDATES_PER_HOUR = 5
 db = dataset.connect(config.PG_LINK, row_type=dict)
+
 
 def start(bot, update):
     update.message.reply_text(strings.GREETING_TEXT)
@@ -42,16 +44,20 @@ def parse(bot, job):
                 published = page.entries[0].updated
 
             table = db['feeds']
-            if not table.find_one(feed_title=feed_title, post_title=post_title):
+            if not table.find_one(feed_title=feed_title, post_title=post_title) and len(buffer) < MAX_UPDATES_PER_HOUR:
                 info = {'url': url, 'feed_title': feed_title, 'post_title': post_title}
                 buffer.append(info)
 
-                table.insert(dict(feed_title=feed_title, post_title=post_title,
-                                  url=url, published=published))
+                table.insert({
+                    "feed_title": feed_title,
+                    "post_title": post_title,
+                    "url": url,
+                    "published": published
+                })
                 logging.info(f'Buffered {post_title}')
             logging.info(f'-- Finished {feed_title}')
 
-    # Report time taken to construct buffer
+    # Report time taken to make buffer
     end_time = datetime.now()
     total_time = (end_time - start_time).total_seconds()
     total_time_str = f'Parsing took {total_time} seconds, buffer has {len(buffer)} elements.'
@@ -68,6 +74,7 @@ def send_messages(bot, job):
     logging.info('-- Sending messages from buffer')
     for element in buffer:
         send_to_channel(bot, element)
+    logging.info('-- Empty buffer')
     buffer.clear()
 
 
@@ -76,14 +83,16 @@ def send_to_channel(bot, info):
     if len(feed_title) > 30:  # Strip long feed titles
         feed_title = feed_title[0:30] + '...'
     keyboard = [
-        [InlineKeyboardButton(feed_title, url=info['url'])]]
+        [InlineKeyboardButton(feed_title, url=info['url'])]
+    ]
     reply_markup = InlineKeyboardMarkup(keyboard)
 
     bot.send_message(
         chat_id=config.NEWS_CHANNEL,
         text=f'<a href="{info["url"]}"> {info["post_title"]}</a>',
         parse_mode=ParseMode.HTML,
-        reply_markup=reply_markup)
+        reply_markup=reply_markup
+    )
 
 
 def report_to_maintainer(bot, message):
