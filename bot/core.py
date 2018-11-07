@@ -25,6 +25,9 @@ def parse(bot, job):
         for line in websites:
             page = feedparser.parse(line)
 
+            if len(buffer) == MAX_UPDATES_PER_HOUR:
+                break
+
             if line.startswith('#'):
                 continue
 
@@ -44,7 +47,7 @@ def parse(bot, job):
                 published = page.entries[0].updated
 
             table = db['feeds']
-            if not table.find_one(feed_title=feed_title, post_title=post_title) and len(buffer) < MAX_UPDATES_PER_HOUR:
+            if not table.find_one(feed_title=feed_title, post_title=post_title):
                 info = {'url': url, 'feed_title': feed_title, 'post_title': post_title}
                 buffer.append(info)
 
