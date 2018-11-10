@@ -21,7 +21,7 @@ https://www.youtube.com/feeds/videos.xml?channel_id=UC0JB7TSe49lg56u6qH8y_MQ
 https://www.unrealengine.com/en-US/rss
 https://forum.unity.com/forums/9/index.rss
 https://godotengine.org/rss.xml
-http://the-witness.net/news/category/engine-tech/feed/
+http://the-witness.net/news/feed/
 http://www.adriancourreges.com/atom.xml
 # Documentaries
 https://www.youtube.com/feeds/videos.xml?channel_id=UC0fDG3byEcMtbOqPMymDNbw
