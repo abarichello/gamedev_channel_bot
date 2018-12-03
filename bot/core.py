@@ -41,6 +41,7 @@ def parse(bot, job):
             post_title = page.entries[0].title
             url = page.entries[0].link
 
+            # This fixes inconsistent element naming in some RSS feeds
             if 'published' in page.feed:
                 published = page.entries[0].published
             else:
@@ -60,12 +61,12 @@ def parse(bot, job):
                 logging.info(f'Buffered {post_title}')
             logging.info(f'-- Finished {feed_title}')
 
-    # Report time taken to make buffer
+    # Report time taken to buffer
     end_time = datetime.now()
     total_time = (end_time - start_time).total_seconds()
-    total_time_str = f'Parsing took {total_time} seconds, buffer has {len(buffer)} elements.'
+    total_time_str = f'Buffering took {total_time} seconds with {len(buffer)} elements.'
     logging.info(total_time_str)
-    bot.send_message(chat_id=config.GDC_MAINTAINER, text=total_time_str)
+    report_to_maintainer(bot, total_time_str)
 
     # Schedule next job according to env GDC_BUFFER
     next_job = config.GDC_BUFFER - total_time
