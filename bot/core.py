@@ -31,12 +31,6 @@ def parse(bot, job):
             if line.startswith('#'):
                 continue
 
-            if page.bozo == 1:
-                message = f'-- RSS Error: {line}\n {page.bozo_exception}'
-                logging.error(message)
-                report_to_maintainer(bot, message)
-                continue
-
             feed_title = page.feed.title
             post_title = page.entries[0].title
             url = page.entries[0].link
