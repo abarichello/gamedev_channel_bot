@@ -1,10 +1,13 @@
 # gamedev_channel_bot
-
-<img src="https://i.imgur.com/ZrkbgC8.png" align="right" width="256" height="256">
+<img src="https://i.imgur.com/ZrkbgC8.png" align="right" width="128" height="128">
 GameDev channel on Telegram, updated hourly with the best gamedev websites content.
 
 # Channel
-[CLICK HERE](http://t.me/gamedev_channel) to join the channel on telegram. The bot checks the websites for new posts every hour.
+Click the image below to preview the channel on your browser.
+
+<a href="https://t.me/gamedev_channel">
+  <img src="https://i.imgur.com/SZSrlmE.png">
+</a>
 
 # Bot
 This bot can be repurposed to parse any type of RSS feeds you want, just modify the `websites.txt` file and environment variables in `config.py`.
