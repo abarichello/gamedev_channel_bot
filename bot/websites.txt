@@ -18,6 +18,7 @@ https://www.youtube.com/feeds/videos.xml?channel_id=UCHTnEwQKNwm49CQeCVZogMw
 # Tech Talks
 https://www.youtube.com/feeds/videos.xml?channel_id=UC0JB7TSe49lg56u6qH8y_MQ
 # Game Engine Blogs / Engine Tech / Graphics
+https://www.youtube.com/feeds/videos.xml?channel_id=UCCuoqzrsHlwv1YyPKLuMDUQ
 https://www.unrealengine.com/en-US/rss
 https://forum.unity.com/forums/9/index.rss
 https://godotengine.org/rss.xml
