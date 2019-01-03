@@ -24,9 +24,10 @@ https://forum.unity.com/forums/9/index.rss
 https://godotengine.org/rss.xml
 http://the-witness.net/news/feed/
 http://www.adriancourreges.com/atom.xml
-# Documentaries
+# Documentaries / Interviews
 https://www.youtube.com/feeds/videos.xml?channel_id=UC0fDG3byEcMtbOqPMymDNbw
 https://www.youtube.com/feeds/videos.xml?channel_id=UCSuhUzpdXg9jme6eN6HA_IA
+https://www.youtube.com/feeds/videos.xml?playlist_id=PLKeyR9bVVLDgdC1OzYxIsCCfV-TKtO30L
 # Gaming/Developer specific blogs
 https://nexus.leagueoflegends.com/en-us/feed/
 https://www.factorio.com/blog/rss
