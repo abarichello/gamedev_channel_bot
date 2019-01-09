@@ -34,6 +34,7 @@ https://www.factorio.com/blog/rss
 https://engineering.riotgames.com/news/feed
 https://rocketsnail.com/blog?format=RSS
 http://www.positech.co.uk/cliffsblog/feed/
+https://aras-p.info/atom.xml
 # Game Design
 http://www.lostgarden.com/feeds/posts/default?alt=rss
 https://itch.io/blog.rss
