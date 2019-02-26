@@ -18,28 +18,39 @@ def start(bot, update):
 
 
 def parse(bot, job):
-    logging.info("-- Starting buffer")
+    logging.info('-- Starting buffer')
     start_time = datetime.now()
 
     with open('websites.txt', 'r') as websites:
         for line in websites:
             page = feedparser.parse(line)
 
-            if len(buffer) == MAX_UPDATES_PER_HOUR:
-                break
-
-            if line.startswith('#'):
+            if line.startswith('#'):  # websites.txt supports comments
                 continue
 
-            feed_title = page.feed.title
-            post_title = page.entries[0].title
-            url = page.entries[0].link
+            if len(buffer) >= MAX_UPDATES_PER_HOUR:
+                logging.info('Reached max updates per hour')
+                break
 
-            # This fixes inconsistent element naming in some RSS feeds
+            if page.status >= 400:
+                msg = 'Could not reach feed:\n' + str(page.bozo_exception)
+                logging.error(msg)
+                report_to_maintainer(bot, msg)
+                continue
+
+            # Fixes for inconsistent element naming in some RSS feeds
+            if 'title' in page:
+                feed_title = page.feed
+            else:
+                feed_title = page.href
+            logging.info(f'-- Parsing: {feed_title}')
             if 'published' in page.feed:
                 published = page.entries[0].published
             else:
                 published = page.entries[0].updated
+
+            post_title = page.entries[0].get('title', 'untitled article')
+            url = page.entries[0].link
 
             table = db['feeds']
             if not table.find_one(feed_title=feed_title, post_title=post_title):
@@ -47,13 +58,12 @@ def parse(bot, job):
                 buffer.append(info)
 
                 table.insert({
-                    "feed_title": feed_title,
-                    "post_title": post_title,
-                    "url": url,
-                    "published": published
+                    'feed_title': feed_title,
+                    'post_title': post_title,
+                    'url': url,
+                    'published': published
                 })
                 logging.info(f'Buffered {post_title}')
-            logging.info(f'-- Finished {feed_title}')
 
     # Report time taken to buffer
     end_time = datetime.now()
@@ -65,10 +75,10 @@ def parse(bot, job):
     # Schedule next job according to env GDC_BUFFER
     next_job = config.GDC_BUFFER - total_time
     logging.info(f'-- Next job scheduled to run in {next_job} seconds')
-    job.job_queue.run_once(send_messages, when=next_job, name='message_job')
+    job.job_queue.run_once(send_messages_from_buffer, when=next_job, name='message_job')
 
 
-def send_messages(bot, job):
+def send_messages_from_buffer(bot, job):
     logging.info('-- Sending messages from buffer')
     for element in buffer:
         send_to_channel(bot, element)
