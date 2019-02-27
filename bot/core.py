@@ -38,19 +38,16 @@ def parse(bot, job):
                 report_to_maintainer(bot, msg)
                 continue
 
-            # Fixes for inconsistent element naming in some RSS feeds
-            if 'title' in page:
-                feed_title = page.feed
-            else:
-                feed_title = page.href
+            feed_title = page.feed.title
+            post_title = page.entries[0].title
+            url = page.entries[0].link
             logging.info(f'-- Parsing: {feed_title}')
+
+            # Fixes for inconsistent element naming in some RSS feeds
             if 'published' in page.feed:
                 published = page.entries[0].published
             else:
                 published = page.entries[0].updated
-
-            post_title = page.entries[0].get('title', 'untitled article')
-            url = page.entries[0].link
 
             table = db['feeds']
             if not table.find_one(feed_title=feed_title, post_title=post_title):
@@ -101,6 +98,10 @@ def send_to_channel(bot, info):
         parse_mode=ParseMode.HTML,
         reply_markup=reply_markup
     )
+
+
+def print_jobs(bot, update, job):
+    update.message.reply_text(str(job.next_job))
 
 
 def report_to_maintainer(bot, message):

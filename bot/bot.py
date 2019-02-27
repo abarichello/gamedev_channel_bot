@@ -22,6 +22,7 @@ def main():
     dp.add_error_handler(error_callback)
     dp.add_handler(CommandHandler('start', core.start))
     dp.add_handler(CommandHandler('help', core.get_help))
+    dp.add_handler(CommandHandler('next', core.print_jobs))
 
     while True:
         if datetime.datetime.now().minute is 57:
