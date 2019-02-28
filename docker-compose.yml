@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  db:
+    image: postgres:10-alpine
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: ${PGUSER}
+      POSTGRES_PASSWORD: ${PGPASSWORD}
+
+  bot:
+    build: .
+    ports:
+      - "30:30"
+    env_file: .env

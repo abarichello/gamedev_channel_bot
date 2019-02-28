@@ -1,4 +1,5 @@
+telegram==0.0.1
 python_telegram_bot==8.0
 feedparser==5.2.1
-telegram==0.0.1
 dataset==1.1.2
+psycopg2-binary
