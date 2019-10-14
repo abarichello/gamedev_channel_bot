@@ -6,7 +6,7 @@ http://www.gamesauce.biz/feed/
 http://feeds.feedburner.com/GamesBrief
 # Reverse Engineering / Game Hacking / Game Network
 http://dsasmblr.com/feed/
-https://gamephreakers.com/feed/
+https://guidedhacking.com/forums/game-hacking-tutorials.37/index.rss
 https://www.youtube.com/feeds/videos.xml?channel_id=UCqfqH-wq12WOm4QG4KiRisw
 https://www.youtube.com/feeds/videos.xml?channel_id=UCxuUEVD4bQqT3twlaeW9usQ
 https://www.youtube.com/feeds/videos.xml?channel_id=UCP7QY6L5pvmm0-stL-pNFrw
