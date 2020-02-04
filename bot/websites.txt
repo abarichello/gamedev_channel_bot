@@ -1,7 +1,6 @@
 # Gaming News Websites
 http://www.eurogamer.net/?format=rss&type=article
 http://feeds.feedburner.com/GamasutraFeatureArticles/
-https://www.gamedev.net/rss/4-gamedevnet-news.xml/
 http://www.gamesauce.biz/feed/
 http://feeds.feedburner.com/GamesBrief
 # Reverse Engineering / Game Hacking / Game Network
