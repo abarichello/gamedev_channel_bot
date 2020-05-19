@@ -28,7 +28,6 @@ https://www.youtube.com/feeds/videos.xml?playlist_id=PLKeyR9bVVLDgdC1OzYxIsCCfV-
 # Gaming/Developer specific blogs
 https://www.factorio.com/blog/rss
 https://engineering.riotgames.com/news/feed
-https://rocketsnail.com/blog?format=RSS
 http://www.positech.co.uk/cliffsblog/feed/
 https://aras-p.info/atom.xml
 # Game Design
