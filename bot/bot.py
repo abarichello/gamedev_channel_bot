@@ -25,7 +25,7 @@ def main():
     dp.add_handler(CommandHandler('next', core.print_jobs))
 
     while True:
-        if datetime.datetime.now().minute is 57:
+        if datetime.datetime.now().minute == 57:
             job.run_repeating(core.parse, interval=3600, first=0, name='parse_job')
             break
         else:

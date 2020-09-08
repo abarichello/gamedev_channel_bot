@@ -8,6 +8,7 @@ services:
     environment:
       POSTGRES_USER: ${PGUSER}
       POSTGRES_PASSWORD: ${PGPASSWORD}
+      POSTGRES_DB: ${PGDB}
 
   bot:
     build: .
